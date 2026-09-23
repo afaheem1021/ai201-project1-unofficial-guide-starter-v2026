@@ -1,28 +1,14 @@
-"""
-Stage 2 of the pipeline: splitting documents into chunks.
+"""Stage 2: keep short campus posts intact, with a boundary-aware long-post path.
 
-⚠️ THIS IS THE FILE YOU CHANGE IN MILESTONE 3.
-
-`split_documents` below is deliberately plain. It cuts every document into
-fixed-size pieces with a fixed overlap and pays no attention to where sentences
-or paragraphs end. It works, and it is not good.
-
-On a corpus of short posts it may not cut anything at all: `campus_life` comes
-out as 88 documents and 88 chunks, because almost nothing in it reaches 800
-characters. That is the baseline, not a bug — Milestone 3 is where you decide
-whether one post should stay one chunk.
-
-Your job in Milestone 3 is to replace the *body* of `split_documents` with a
-strategy that fits the documents you actually read in Milestone 1. Keep the
-name and the shape of what it returns — the rest of the pipeline calls it, and
-your README has to name the function that produced your chunks.
-
-If you get stuck for 30 minutes, `fallback_split` is the original. Switch back
-to it, write down what you saw, and move on. That's a real observation about
-your pipeline, not giving up.
+The current campus_life documents all fit within the 600-character soft budget.
+Longer posts are split at paragraphs, then sentence punctuation when needed.
+An oversized sentence remains intact even if it exceeds the budget. Body text
+is never overlapped; a long post's title is repeated only to preserve context.
+The original fixed-window implementation remains available as fallback_split.
 """
 
 from dataclasses import dataclass
+import re
 
 import config
 from ingest import Document
@@ -82,22 +68,62 @@ def fallback_split(
 
 def split_documents(documents: list[Document]) -> list[Chunk]:
     """
-    Split documents into chunks. ⚠️ REPLACE THE BODY OF THIS IN MILESTONE 3.
+    Keep complete short posts, splitting longer ones without body overlap.
 
-    Right now it just calls the fallback. That is the plain, generic behaviour
-    the brief is talking about.
-
-    When you write your own strategy, set `produced_by` to
-    "chunker.py::split_documents" so your README's Sample Chunks section names
-    the right function. `app.py chunks` prints that string for you.
-
-    Things worth thinking about before you write any code:
-      - Are your documents short posts or long guides?
-      - Is the useful information in one sentence, or spread over a paragraph?
-      - Would splitting on paragraph breaks keep more thoughts intact than
-        splitting on a character count?
+    A single first line followed by a blank line is treated as a title unless
+    it ends in sentence punctuation. This matches the campus_life post format.
+    The title counts toward the soft budget and accompanies each body chunk.
+    Sentence detection uses punctuation followed by whitespace; it is a small
+    plain-text heuristic, not a general-purpose language parser.
     """
-    return fallback_split(documents)
+    chunk_size = config.CHUNK_SIZE
+    if not isinstance(chunk_size, int) or isinstance(chunk_size, bool) or chunk_size <= 0:
+        raise ValueError("CHUNK_SIZE must be a positive integer")
+
+    chunks: list[Chunk] = []
+    for doc in documents:
+        text = doc.text.strip()
+        if not text:
+            continue
+
+        if len(text) <= chunk_size:
+            pieces = [text]
+        else:
+            first, separator, rest = text.partition("\n\n")
+            has_title = separator and "\n" not in first and first[-1] not in ".!?"
+            title = first + "\n\n" if has_title else ""
+            body = rest if has_title else text
+            body_budget = max(1, chunk_size - len(title))
+            pieces = [title + piece for piece in _split_body(body, body_budget)]
+
+        for index, piece in enumerate(pieces):
+            chunks.append(Chunk(piece, doc.source, index, "chunker.py::split_documents"))
+
+    return chunks
+
+
+def _split_body(body: str, budget: int) -> list[str]:
+    """Pack paragraphs or whole sentences, allowing a long sentence to overflow."""
+    pieces: list[str] = []
+    current = ""
+    for paragraph in re.split(r"\n[ \t]*\n", body):
+        paragraph = paragraph.strip()
+        if not paragraph:
+            continue
+        units = [paragraph]
+        if len(paragraph) > budget:
+            units = re.split(r"(?<=[.!?])\s+", paragraph)
+        for index, unit in enumerate(units):
+            separator = "\n\n" if index == 0 else " "
+            candidate = current + separator + unit if current else unit
+            if current and len(candidate) > budget:
+                pieces.append(current)
+                current = unit
+            else:
+                current = candidate
+    if current:
+        pieces.append(current)
+    return pieces
 
 
 def describe(chunks: list[Chunk]) -> str:

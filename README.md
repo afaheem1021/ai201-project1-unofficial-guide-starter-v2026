@@ -43,65 +43,108 @@ chunker or corpus. See [RUNNING.md](RUNNING.md) for all commands and
 
 ## Chunking Strategy
 
-**Current starter settings:** 800 characters with 120-character overlap.
-**Planned custom strategy, recorded before implementation:** a 600-character
-soft budget and zero body-text overlap, keeping a complete short post together.
-For longer documents, split at paragraph or sentence boundaries, preserving
-complete sentences rather than cutting at an exact character position.
+**Chunk size:** 600-character soft budget, including a title when present.
+**Overlap:** 0 characters of body text. For a longer titled post, its title is
+repeated on each chunk as context; none of the current posts needs splitting.
+**Function:** `chunker.py::split_documents`.
 
 The 88 cleaned posts range from 178 to 549 characters, averaging 317. Reading
 `dining_the_ridgeway_cafe.txt`, `course_cs_210.txt`,
-`housing_innisfree_hall.txt`, and `transit_shuttle.txt` showed why the title and
+`housing_innisfree_hall.txt`, and `transit_shuttle.txt` showed why titles and
 related details belong together: the shuttle post, for example, ties service
-frequency to a specific skipped stop. A 600-character budget accommodates each
-current post with its context. Zero overlap avoids duplicating body text when a
-complete post already forms one chunk. The starter also produces 88 chunks;
-retaining that count would be an intentional choice, not evidence that the
-chunker was never replaced.
+frequency to a specific skipped stop. The 600-character budget keeps those
+complete thoughts together, and zero body overlap avoids duplicating information
+when a post already fits in one chunk. This strategy was recorded in commit
+`9d5e7cd` before implementation.
+
+The custom function retains a short post intact. Longer posts are packed by
+paragraph, splitting an oversized paragraph at sentence punctuation when needed;
+a single oversized sentence stays whole even if it exceeds the soft budget.
+This is a simple punctuation heuristic, so abbreviation-heavy future documents
+would need further review. Sources never mix, and each chunk retains its filename,
+per-document index, and producing function. The starter's `fallback_split` is
+still available for comparison using explicit size 800 and overlap 120.
+
+| Implementation | Documents | Chunks | Average characters | Shortest | Longest |
+|---|---:|---:|---:|---:|---:|
+| Starter, size 800 / overlap 120 | 88 | 88 | 317 | 178 | 549 |
+| Custom, size 600 / body overlap 0 | 88 | 88 | 317 | 178 | 549 |
+
+The equal counts are intentional: every current post fits the budget, so
+splitting solely to increase the count would remove context without a demonstrated
+benefit. The custom strategy changes how future longer posts are handled.
 
 Ingestion uses `ingest.py::clean_text` to normalize newlines, repeated spaces,
-and excess blank lines while retaining paragraph boundaries. These provided
-course documents contain plain text, with no navigation, ads, or HTML in the
-reviewed sources. This is not a general-purpose web-page cleaner.
-
-The strategy above was recorded before implementation; samples will be copied
-from the custom chunker after it is implemented.
+and excess blank lines while retaining paragraph boundaries. The provided
+course corpus contains plain text, rather than scraped navigation or ads;
+this cleaner is not a general-purpose HTML or boilerplate remover.
 
 ## Sample Chunks
 
-<!-- Five chunks, pasted as text. Label each one and name the file it came from
-     AND the function that produced it — the grader checks your code against
-     what you claim here.
+Exact text from `python app.py chunks -n 5`; the full output is in
+[the chunk transcript](results/unit1_chunks.txt).
 
-     `python app.py chunks -n 5` prints all three for you. Copy them straight
-     across.
+**Chunk 1** — source: `admin_add_drop_deadline.txt#0` — produced by: `chunker.py::split_documents`
 
-     Milestone 3. -->
+```text
+On the add/drop deadline
 
-**Chunk 1** — source: `` — produced by: ``
-
-```
+You can add a course through the end of the second week. Dropping is a longer window — through the end of week six — but a drop after week two shows as a W on your transcript. Nothing anywhere on the registrar's site says this plainly, and students find out from each other.
 ```
 
-**Chunk 2** — source: `` — produced by: ``
+**Chunk 2** — source: `course_biol_160.txt#0` — produced by: `chunker.py::split_documents`
 
-```
-```
+```text
+BIOL 160 Cell Biology
 
-**Chunk 3** — source: `` — produced by: ``
+I lived here my sophomore year. Format is lecture three times a week with a weekly lab. Assessment: four unit tests and a cumulative final. Not curved.
 
-```
-```
+Expect 9 to 11 hours a week, the heaviest first-year course by reputation.
 
-**Chunk 4** — source: `` — produced by: ``
-
-```
+The one piece of advice: the unit tests come fast, roughly every three weeks; falling behind once is very hard to recover from.
 ```
 
-**Chunk 5** — source: `` — produced by: ``
+**Chunk 3** — source: `course_hist_118_workload.txt#0` — produced by: `chunker.py::split_documents`
 
+```text
+Workload for HIST 118 Modern World History
+
+People keep asking so: a lot of reading, about 120 pages a week, but no problem sets. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
 ```
+
+**Chunk 4** — source: `dining_pellew_dining_hall_followup.txt#0` — produced by: `chunker.py::split_documents`
+
+```text
+Re: Pellew Dining Hall
+
+Adding to what people have said about Pellew Dining Hall. The wait figure of 12 to 18 minutes at peak matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: the furthest hall from anywhere, next to the athletics centre. Nobody tells you this at orientation.
 ```
+
+**Chunk 5** — source: `housing_innisfree_hall.txt#0` — produced by: `chunker.py::split_documents`
+
+```text
+Innisfree Hall — what it's actually like
+
+Transferred in last year, so take this with a grain of salt. Built 1991, renovated 2022. Rooms are doubles arranged as pairs sharing one bathroom between two rooms.
+
+The good: the shared-bathroom-between-two-rooms arrangement is the best compromise on campus.
+
+The bad: no air conditioning, which matters for the first three weeks of September.
+
+Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building is L-shaped and the short wing is much quieter.
+```
+
+These five samples retain their source titles and complete body sentences.
+Each can answer a question on its own: (1) when a dropped course earns a W,
+(2) how BIOL 160 is assessed, (3) the weekly reading for HIST 118,
+(4) peak waits and when to arrive at Pellew Dining Hall, and (5) Innisfree Hall's
+AC, laundry prices, or quieter wing. The BIOL source's incongruous opening
+“I lived here” is present in the original; preserving a source does not certify
+that every sentence in it is accurate.
 
 ## Sample Answer
 
