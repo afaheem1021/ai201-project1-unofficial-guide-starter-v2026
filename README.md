@@ -1,6 +1,6 @@
 # The Unofficial Guide
 
-<!-- Replace this line with your name and which corpus you picked. -->
+Ahmed Faheem — `campus_life`
 
 > **This file is your submission.** Fill it in as you go — most sections get
 > written during the milestone that produces them, not at the end.
@@ -21,11 +21,30 @@
 
 ## What This Does
 
-<!-- Three or four sentences. Which corpus you picked, and the kinds of
-     questions your system answers. Write it for someone who has never seen
-     this repo.
+The Unofficial Guide answers questions about dining, housing, classes, and
+campus services using the 88 short posts in `campus_life`. These documents are
+fictional course materials, not advice about a real university. It searches
+local document embeddings and asks Gemini to answer from the retrieved text
+with source filenames. A distance gate refuses unrelated questions before
+calling Gemini.
 
-     Milestone 5. -->
+Run it locally with Python 3.11–3.13:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+cp .env.example .env   # first setup only; enter your own key in this local file
+python test.py
+python app.py index
+python app.py ask "is the housing lottery random?"
+python app.py ask      # interactive questions; empty input exits
+```
+
+Keep `.env` private. It, the virtual environment, response cache, and local
+vector store are excluded from Git. Rebuild the index after changing the
+chunker or corpus. See [RUNNING.md](RUNNING.md) for all commands and
+[setup verification](results/unit1_setup.md) for the initial checks.
 
 ## Chunking Strategy
 

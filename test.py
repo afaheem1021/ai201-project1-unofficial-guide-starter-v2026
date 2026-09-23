@@ -26,7 +26,7 @@ from pathlib import Path
 # --- Course-wide pins -------------------------------------------------------
 # The model lives here, in one place, so a provider change is one edit.
 # Override locally by setting AI201_MODEL in your .env.
-MODEL = os.getenv("AI201_MODEL", "gemini-3.5-flash-lite")
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
 MIN_PYTHON = (3, 11)
 MAX_PYTHON = (3, 14)  # exclusive — 3.14 breaks the pinned stack
@@ -265,15 +265,19 @@ def check_chroma():
 
 
 def check_api_call(key):
+    # load_key() has now loaded .env. Resolve the override here, not at import.
+    model = os.getenv("AI201_MODEL", DEFAULT_MODEL)
     try:
         from google import genai
     except ImportError:
         return report("SKIP", "Model call", "google-genai not installed yet.")
     try:
         client = genai.Client(api_key=key)
-        resp = client.models.generate_content(model=MODEL, contents="Reply with one word: ready")
+        resp = client.models.generate_content(model=model, contents="Reply with one word: ready")
         text = (resp.text or "").strip()
-        report("PASS", "Model call", f'{MODEL} replied "{text[:40]}"')
+        if not text:
+            return report("FAIL", "Model call", f"{model} returned no text. Try again before considering setup complete.")
+        report("PASS", "Model call", f'{model} replied "{text[:40]}"')
     except Exception as e:
         msg = str(e)
         hint = ""
@@ -282,7 +286,7 @@ def check_api_call(key):
         elif "API key" in msg or "401" in msg or "403" in msg or "PERMISSION" in msg:
             hint = "\n         The key was rejected. Create a new one and paste it into .env again."
         elif "404" in msg or "NOT_FOUND" in msg:
-            hint = f"\n         The model string '{MODEL}' did not resolve. Post in the help channel."
+            hint = f"\n         The model string '{model}' did not resolve. Post in the help channel."
         report("FAIL", "Model call", f"{type(e).__name__}: {msg[:160]}{hint}")
 
 
