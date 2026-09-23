@@ -1,7 +1,15 @@
 # Acceptance criteria — The Unofficial Guide
 
-Five criteria that say what "working" means for this system, written in unit 1
-**before** any results existed.
+Criteria that say what "working" means for this system, recorded in unit 1
+**before the five-question calibration and unit 2 evaluation**. The required
+Milestone 1 starter demonstration is recorded separately in `results/`.
+
+**Milestone 2 is in progress:** criteria 4 and 5 and their reasons must be
+written by Ahmed. The assignment explicitly reserves those decisions for the
+student. The five questions and expected phrases in `questions.py` were
+selected from the source documents, without retrieving or generating answers
+to those questions. The reasoning below for the supplied targets is AI-assisted
+and should be reviewed by Ahmed before finalizing this milestone.
 
 An acceptance criterion names a target: a number, a count, a rate, or something
 a person could plainly observe. *"Retrieval works"* is an opinion. *"For at
@@ -23,8 +31,10 @@ For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
 
 **Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
+Several housing and course files repeat similar vocabulary, and the shuttle
+question asks for multiple details. Four of five allows one retrieval miss
+while still requiring the top-five results to be useful across different
+campus topics; a lower target would tolerate too many routine failures.
 
 ---
 
@@ -33,8 +43,11 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
+Every retrieved chunk already carries a filename, and the prompt provides it
+to the model. Requiring attribution on every substantive answer is therefore
+reasonable: even one uncited answer would prevent a reader from checking it.
+The fixed no-information refusal is not a substantive answer and must not
+invent a source; criterion 3 tests that path separately.
 
 ---
 
@@ -50,8 +63,10 @@ in at least 4 of 5 tries.
      just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
 
 **Why this target:**
-<!-- What did your distances look like when you set the cutoff in Milestone 4?
-     Was there a clean gap, or did the two groups overlap? -->
+The five `OUT_OF_SCOPE` questions concern topics outside these fictional campus
+posts. Four refusals allows one accidental semantic match, but a looser target
+would accept too much unrelated material. The distances have not been measured
+yet; the cutoff will be chosen in Milestone 4 without changing this target.
 
 ---
 

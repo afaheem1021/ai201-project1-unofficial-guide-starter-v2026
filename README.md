@@ -2,18 +2,13 @@
 
 Ahmed Faheem — `campus_life`
 
-> **This file is your submission.** Fill it in as you go — most sections get
-> written during the milestone that produces them, not at the end.
->
-> How the starter works, and every command you'll need, is in `RUNNING.md`.
-> Leave that file alone.
->
-> **Paste everything as text.** No screenshots, no video. A typed table gets
-> full credit; a picture of the same table gets none.
->
-> Delete these instruction blocks as you replace them. The `<!-- -->` comments
-> are notes to you and don't show up when the page renders — you can leave them
-> or remove them.
+**Status:** setup and the starter demonstration are verified. Milestone 2 is
+in progress: Ahmed's two custom criteria and their explanations are pending.
+The custom chunker, five-question calibration, and final write-up will follow
+after those targets are committed. This is not yet a complete submission.
+
+Repository to use for both units:
+https://github.com/afaheem1021/ai201-project1-unofficial-guide-starter-v2026
 
 ---
 
@@ -48,18 +43,28 @@ chunker or corpus. See [RUNNING.md](RUNNING.md) for all commands and
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Current starter settings:** 800 characters with 120-character overlap.
+**Planned custom strategy, recorded before implementation:** a 600-character
+soft budget and zero body-text overlap, keeping a complete short post together.
+For longer documents, split at paragraph or sentence boundaries, preserving
+complete sentences rather than cutting at an exact character position.
 
-<!-- What about YOUR documents made you pick these numbers? Short posts and
-     long sectioned guides don't want the same chunking, and "800 seemed
-     reasonable" earns nothing. Point at something you noticed when you read
-     the documents in Milestone 1.
+The 88 cleaned posts range from 178 to 549 characters, averaging 317. Reading
+`dining_the_ridgeway_cafe.txt`, `course_cs_210.txt`,
+`housing_innisfree_hall.txt`, and `transit_shuttle.txt` showed why the title and
+related details belong together: the shuttle post, for example, ties service
+frequency to a specific skipped stop. A 600-character budget accommodates each
+current post with its context. Zero overlap avoids duplicating body text when a
+complete post already forms one chunk. The starter also produces 88 chunks;
+retaining that count would be an intentional choice, not evidence that the
+chunker was never replaced.
 
-     If you changed your mind partway through, say so and say why. That's worth
-     more than pretending you got it right first time.
+Ingestion uses `ingest.py::clean_text` to normalize newlines, repeated spaces,
+and excess blank lines while retaining paragraph boundaries. These provided
+course documents contain plain text, with no navigation, ads, or HTML in the
+reviewed sources. This is not a general-purpose web-page cleaner.
 
-     Milestone 3. -->
+Implementation and sample chunks are pending completion of Milestone 2.
 
 ## Sample Chunks
 
@@ -126,23 +131,23 @@ chunker or corpus. See [RUNNING.md](RUNNING.md) for all commands and
 
 ## How I Used AI
 
-<!-- Two specific moments. For each: what you asked for, what came back, and
-     what you changed about it.
+**1. Setup and secret handling.** I asked Codex to verify my setup, keep the
+Gemini key out of Git, and commit using my account. It found that the virtual
+environment existed but contained none of the required packages. Codex installed
+them, created an ignored local `.env`, verified a real Gemini response, and
+checked that Git author and committer identities were mine. It also fixed the
+setup check's handling of a model override in `.env` and blank responses. These
+were AI-made changes; I have not claimed to have made them manually.
 
-     "I asked Claude to write the chunking function from my notes. It ignored
-     the overlap, so I added that myself" is the level of detail we're after.
-     "I used AI to help me code" is not.
+**2. Corpus and evaluation preparation.** As part of my request to follow the
+assignment, Codex inspected the campus documents and proposed keeping short
+posts together with a 600-character budget and no body overlap. It selected
+five questions and checked their expected phrases against source files without
+running retrieval on them. The plan and question selection are AI-assisted;
+I still need to write criteria 4 and 5 and review the supplied criteria's
+explanations before implementation and calibration continue.
 
-     Milestone 5. -->
-
-**1.**
-
-**2.**
-
-<!-- ── Stretch features ─────────────────────────────────────────────────────
-     Doing one? Say so here BEFORE you start. A feature this README never
-     claims earns nothing.
-     ───────────────────────────────────────────────────────────────────────── -->
+No stretch features are planned for this unit.
 
 ---
 

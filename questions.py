@@ -22,12 +22,31 @@ names a target of "4 of 5", and four of three is not a thing.
 """
 
 QUESTIONS = [
-    # {"question": "...", "expects": "..."},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
+    # Ground truth: dining_the_ridgeway_cafe.txt.
+    {
+        "question": "Can I use meal swipes at The Ridgeway Café, and how do I pay there?",
+        "expects": "declining balance",
+    },
+    # Ground truth: course_cs_210.txt and course_cs_210_exams.txt.
+    {
+        "question": "Why should I complete the CS 210 labs even though they are only 10% of the grade?",
+        "expects": "lab problems",
+    },
+    # Ground truth: housing_innisfree_hall.txt and housing_innisfree_hall_noise.txt.
+    {
+        "question": "Does Innisfree Hall have air conditioning, and which wing is quieter?",
+        "expects": "short wing",
+    },
+    # Ground truth: admin_library_holds.txt.
+    {
+        "question": "How many other institutions does the interlibrary system cover, and how long do requests take?",
+        "expects": "week",
+    },
+    # Ground truth: transit_shuttle.txt. Weekend service hours are not stated.
+    {
+        "question": "How often does the campus shuttle run on weekdays versus weekends, and which stop can be skipped?",
+        "expects": "Fenwick Court",
+    },
 ]
 
 # Questions from a different world entirely. Your gate should refuse all five.
