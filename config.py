@@ -41,10 +41,11 @@ TOP_K = 5               # how many chunks to pull back per question
 #
 # LOWER IS BETTER: 0.3 is a close match, 0.9 is unrelated.
 #
-# 0.6 is a reasonable starting point, not a right answer. Milestone 4 has you
-# measure your own two groups of distances and put the cutoff in the gap.
-# Most corpora land somewhere between 0.45 and 0.75.
-THRESHOLD = 0.6
+# Measured on the five campus questions and five OUT_OF_SCOPE questions:
+# covered best distances 0.339755–0.536254; unrelated 0.824593–0.934011.
+# 0.68 is the rounded midpoint of that gap. See results/unit1_calibration.json.
+# This is a calibration choice, not a guarantee for unseen questions.
+THRESHOLD = 0.68
 
 
 # ─── Models ──────────────────────────────────────────────────────────────────

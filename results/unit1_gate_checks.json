@@ -1,0 +1,53 @@
+{
+  "recorded_at": "2026-09-23T03:00:08.402305+00:00",
+  "corpus": "campus_life",
+  "threshold": 0.68,
+  "model_calls": 0,
+  "rows": [
+    {
+      "question": "What is the capital of Mongolia?",
+      "refused": true,
+      "best_distance": 0.8245932411268596,
+      "threshold": 0.68,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that."
+    },
+    {
+      "question": "How do I change the oil in a diesel engine?",
+      "refused": true,
+      "best_distance": 0.9340106947375946,
+      "threshold": 0.68,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that."
+    },
+    {
+      "question": "Who won the 1994 World Cup?",
+      "refused": true,
+      "best_distance": 0.8858601031703384,
+      "threshold": 0.68,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that."
+    },
+    {
+      "question": "What is the recommended dosage of ibuprofen for a headache?",
+      "refused": true,
+      "best_distance": 0.8442316952823572,
+      "threshold": 0.68,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that."
+    },
+    {
+      "question": "How do I write a for loop in Rust?",
+      "refused": true,
+      "best_distance": 0.895997647190278,
+      "threshold": 0.68,
+      "sources": [],
+      "prompt": null,
+      "answer": "I don't have enough information about that."
+    }
+  ]
+}

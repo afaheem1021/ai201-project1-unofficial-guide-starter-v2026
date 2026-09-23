@@ -38,7 +38,7 @@ class GateDecision:
             )
         return (
             f"best distance {self.best_distance:.3f} "
-            f"is over the {self.threshold} cutoff — refusing"
+            f"is at or above the {self.threshold} cutoff — refusing"
         )
 
 

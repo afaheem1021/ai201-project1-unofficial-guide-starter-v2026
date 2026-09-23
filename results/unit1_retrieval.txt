@@ -1,0 +1,469 @@
+Unit 1 retrieval calibration — no generation calls
+
+Question: Can I use meal swipes at The Ridgeway Café, and how do I pay there?
+In corpus: True
+
+1. dining_north_kitchen.txt#0 | cosine distance 0.536254
+Produced by: chunker.py::split_documents
+North Kitchen
+
+Second-year here. Wait times: none, it seats 60 and is rarely more than half full. The thing worth going for is the rotating regional menu, which changes fortnightly and is ambitious. The thing to know is that closed all summer and during reading week.
+
+Hours are 11:00am to 7:00pm weekdays. Costs one meal swipe, or $13.00 cash.
+
+2. dining_the_ridgeway_cafe.txt#0 | cosine distance 0.542672
+Produced by: chunker.py::split_documents
+The Ridgeway Café
+
+Second-year here. Wait times: 10 to 15 minutes at 12:30, none after 2:00. The thing worth going for is the only place on campus with real espresso. The thing to know is that seating is tight; about 40 seats for a building of 900.
+
+Hours are 7:00am to 4:00pm weekdays only. Costs declining balance only, no meal swipes.
+
+3. dining_verrill_street_grill.txt#0 | cosine distance 0.570951
+Produced by: chunker.py::split_documents
+Verrill Street Grill
+
+I'm a junior and I've done this twice now. Wait times: up to 30 minutes on Friday evenings, otherwise under 10. The thing worth going for is the burger, which is the only late-night hot food on campus. The thing to know is that one register, so the queue is a single line no matter how busy.
+
+Hours are 11:00am to 1:00am daily during term. Costs declining balance, or cash after 11:00pm.
+
+4. dining_the_ridgeway_cafe_followup.txt#0 | cosine distance 0.593824
+Produced by: chunker.py::split_documents
+Re: The Ridgeway Café
+
+Adding to what people have said about The Ridgeway Café. The wait figure of 10 to 15 minutes at 12:30 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: seating is tight; about 40 seats for a building of 900. Nobody tells you this at orientation.
+
+5. dining_kestrel_commons.txt#0 | cosine distance 0.605908
+Produced by: chunker.py::split_documents
+Kestrel Commons
+
+I'm a junior and I've done this twice now. Wait times: 20 to 25 minutes between 12:15 and 1:00, under 5 minutes before 11:45. The thing worth going for is the stir-fry station, made to order. The thing to know is that the salad bar wilts after 1:30.
+
+Hours are 7:00am to 9:00pm weekdays, 9:00am to 8:00pm weekends. Costs one meal swipe, or $12.50 cash.
+
+Question: Why should I complete the CS 210 labs even though they are only 10% of the grade?
+In corpus: True
+
+1. course_cs_210_exams.txt#0 | cosine distance 0.418646
+Produced by: chunker.py::split_documents
+CS 210 Data Structures — assessment
+
+Two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.
+
+Do the labs even though they're only 10% — the exams reuse the lab problems.
+
+2. course_cs_210.txt#0 | cosine distance 0.494346
+Produced by: chunker.py::split_documents
+CS 210 Data Structures
+
+I'm a junior and I've done this twice now. Format is lecture with weekly labs; slides go up after class, not before. Assessment: two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.
+
+Expect 8 to 10 hours a week outside class.
+
+The one piece of advice: do the labs even though they're only 10% — the exams reuse the lab problems.
+
+3. course_biol_160.txt#0 | cosine distance 0.614171
+Produced by: chunker.py::split_documents
+BIOL 160 Cell Biology
+
+I lived here my sophomore year. Format is lecture three times a week with a weekly lab. Assessment: four unit tests and a cumulative final. Not curved.
+
+Expect 9 to 11 hours a week, the heaviest first-year course by reputation.
+
+The one piece of advice: the unit tests come fast, roughly every three weeks; falling behind once is very hard to recover from.
+
+4. course_phys_130.txt#0 | cosine distance 0.625547
+Produced by: chunker.py::split_documents
+PHYS 130 Mechanics
+
+Just finished a year in this building. Format is lecture with a compulsory lab that meets fortnightly. Assessment: three midterms, no final, plus a lab practical. Not curved, but the lowest midterm is dropped.
+
+Expect 7 hours a week, plus 3 on lab weeks.
+
+The one piece of advice: the lab practical is worth 20% and almost nobody prepares for it.
+
+5. course_stat_150.txt#0 | cosine distance 0.641212
+Produced by: chunker.py::split_documents
+STAT 150 Applied Statistics
+
+Transferred in last year, so take this with a grain of salt. Format is flipped: watch the recordings, class time is problem sets. Assessment: three equally weighted midterms, no final. No curve, but the lowest midterm is dropped.
+
+Expect 5 to 6 hours a week outside class.
+
+The one piece of advice: the dropped midterm makes the first one low-stakes; use it to learn the format.
+
+Question: Does Innisfree Hall have air conditioning, and which wing is quieter?
+In corpus: True
+
+1. housing_innisfree_hall_noise.txt#0 | cosine distance 0.418144
+Produced by: chunker.py::split_documents
+Noise levels in Innisfree Hall
+
+Asked about this a lot so writing it down. Moderate; the building is l-shaped and the short wing is much quieter.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+2. housing_innisfree_hall.txt#0 | cosine distance 0.477856
+Produced by: chunker.py::split_documents
+Innisfree Hall — what it's actually like
+
+Transferred in last year, so take this with a grain of salt. Built 1991, renovated 2022. Rooms are doubles arranged as pairs sharing one bathroom between two rooms.
+
+The good: the shared-bathroom-between-two-rooms arrangement is the best compromise on campus.
+
+The bad: no air conditioning, which matters for the first three weeks of September.
+
+Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building is L-shaped and the short wing is much quieter.
+
+3. housing_old_brewhouse_noise.txt#0 | cosine distance 0.634492
+Produced by: chunker.py::split_documents
+Noise levels in Old Brewhouse
+
+Asked about this a lot so writing it down. Sound carries strangely because of the original brick; a room two floors up can be louder than next door.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+4. housing_fenwick_court_noise.txt#0 | cosine distance 0.650537
+Produced by: chunker.py::split_documents
+Noise levels in Fenwick Court
+
+Asked about this a lot so writing it down. Thin walls between suites; the kitchenettes carry sound.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+5. housing_tamsin_court.txt#0 | cosine distance 0.663350
+Produced by: chunker.py::split_documents
+Tamsin Court — what it's actually like
+
+I lived here my sophomore year. Built 2021. Rooms are studio apartments with private kitchen and bathroom.
+
+The good: the most independent housing on campus, and the only option with a full kitchen.
+
+The bad: the most expensive tier by a wide margin, and isolating if you're new.
+
+Laundry costs in-unit washer-dryer. On noise: quiet, structurally — concrete floors between units.
+
+Question: How many other institutions does the interlibrary system cover, and how long do requests take?
+In corpus: True
+
+1. admin_library_holds.txt#0 | cosine distance 0.339755
+Produced by: chunker.py::split_documents
+On the library holds
+
+You can place a hold on a checked-out book and it usually arrives in two to three days. What isn't advertised: the interlibrary system covers eleven other institutions and requests through it take about a week but almost never fail.
+
+2. course_cs_210_workload.txt#0 | cosine distance 0.653865
+Produced by: chunker.py::split_documents
+Workload for CS 210 Data Structures
+
+People keep asking so: 8 to 10 hours a week outside class. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+3. money_textbooks.txt#0 | cosine distance 0.667405
+Produced by: chunker.py::split_documents
+Textbooks without paying full price
+
+The library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.
+
+The campus store price-matches, which is not advertised anywhere and you have to ask at the counter with the other listing on your phone.
+
+4. course_cs_340_workload.txt#0 | cosine distance 0.669892
+Produced by: chunker.py::split_documents
+Workload for CS 340 Databases
+
+People keep asking so: 6 hours a week early, 15 in the last three weeks when the project lands. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+5. study_group_rooms.txt#0 | cosine distance 0.677823
+Produced by: chunker.py::split_documents
+Booking a group study room
+
+Rooms book two weeks ahead through the library site, in two-hour blocks, maximum two blocks per person per week. The limit is per person, so a group of four can chain together eight hours if they coordinate.
+
+Rooms 210 and 211 have whiteboards that actually erase. The others don't and no amount of scrubbing helps.
+
+Question: How often does the campus shuttle run on weekdays versus weekends, and which stop can be skipped?
+In corpus: True
+
+1. transit_shuttle.txt#0 | cosine distance 0.382798
+Produced by: chunker.py::split_documents
+The campus shuttle
+
+Runs a loop every 20 minutes from 7am to 11pm on weekdays and every 40 minutes on weekends. The published timetable is optimistic by about five minutes in the morning and accurate the rest of the day.
+
+It's free with a student ID. The stop outside Fenwick Court is the one that gets skipped when the driver is behind, which is worth knowing if you live there.
+
+2. dining_halden_hall_followup.txt#0 | cosine distance 0.576849
+Produced by: chunker.py::split_documents
+Re: Halden Hall
+
+Adding to what people have said about Halden Hall. The wait figure of rarely more than 8 minutes matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: closes at 7:00pm, which catches people out. Nobody tells you this at orientation.
+
+3. dining_kestrel_commons_followup.txt#0 | cosine distance 0.578189
+Produced by: chunker.py::split_documents
+Re: Kestrel Commons
+
+Adding to what people have said about Kestrel Commons. The wait figure of 20 to 25 minutes between 12:15 and 1:00 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: the salad bar wilts after 1:30. Nobody tells you this at orientation.
+
+4. dining_north_kitchen_followup.txt#0 | cosine distance 0.583438
+Produced by: chunker.py::split_documents
+Re: North Kitchen
+
+Adding to what people have said about North Kitchen. The wait figure of none matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: closed all summer and during reading week. Nobody tells you this at orientation.
+
+5. dining_verrill_street_grill.txt#0 | cosine distance 0.590343
+Produced by: chunker.py::split_documents
+Verrill Street Grill
+
+I'm a junior and I've done this twice now. Wait times: up to 30 minutes on Friday evenings, otherwise under 10. The thing worth going for is the burger, which is the only late-night hot food on campus. The thing to know is that one register, so the queue is a single line no matter how busy.
+
+Hours are 11:00am to 1:00am daily during term. Costs declining balance, or cash after 11:00pm.
+
+Question: What is the capital of Mongolia?
+In corpus: False
+
+1. course_hist_118_exams.txt#0 | cosine distance 0.824593
+Produced by: chunker.py::split_documents
+HIST 118 Modern World History — assessment
+
+No exams; two essays and a final project. Not curved.
+
+The essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+2. course_hist_118.txt#0 | cosine distance 0.869272
+Produced by: chunker.py::split_documents
+HIST 118 Modern World History
+
+Transferred in last year, so take this with a grain of salt. Format is discussion-led seminar, attendance is 15% of the grade. Assessment: no exams; two essays and a final project. Not curved.
+
+Expect a lot of reading, about 120 pages a week, but no problem sets.
+
+The one piece of advice: the essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+3. housing_morrow_house.txt#0 | cosine distance 0.890410
+Produced by: chunker.py::split_documents
+Morrow House — what it's actually like
+
+Just finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.
+
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
+
+The bad: known damp problem on the ground floor; two rooms were taken offline in 2024.
+
+Laundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1am on weekends, no enforced quiet hours.
+
+4. housing_morrow_house_laundry.txt#0 | cosine distance 0.910530
+Produced by: chunker.py::split_documents
+Laundry in Morrow House
+
+Machines take $1.50 wash, $1.25 dry, coin or card. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+5. course_hist_118_workload.txt#0 | cosine distance 0.919347
+Produced by: chunker.py::split_documents
+Workload for HIST 118 Modern World History
+
+People keep asking so: a lot of reading, about 120 pages a week, but no problem sets. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+Question: How do I change the oil in a diesel engine?
+In corpus: False
+
+1. admin_meal_plan_changes.txt#0 | cosine distance 0.934011
+Produced by: chunker.py::split_documents
+On the meal plan changes
+
+You can change your meal plan tier once, in the first ten days of the semester. After that it's locked. Downgrading refunds the difference to your student account; upgrading bills you immediately.
+
+2. course_econ_101_exams.txt#0 | cosine distance 0.947412
+Produced by: chunker.py::split_documents
+ECON 101 Introduction to Economics — assessment
+
+Two midterms and a final, all multiple choice. Curved, and generously.
+
+The discussion section is where the exam-style questions get worked; attendance isn't taken but it correlates.
+
+3. housing_old_brewhouse_laundry.txt#0 | cosine distance 0.954460
+Produced by: chunker.py::split_documents
+Laundry in Old Brewhouse
+
+Machines take $1.50 wash, $1.50 dry, coin only, and the machines are old. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+4. course_engl_205_exams.txt#0 | cosine distance 0.964458
+Produced by: chunker.py::split_documents
+ENGL 205 Writing for the Sciences — assessment
+
+No exams; a portfolio of six revised pieces. Not curved.
+
+The portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.
+
+5. course_stat_150_exams.txt#0 | cosine distance 0.967680
+Produced by: chunker.py::split_documents
+STAT 150 Applied Statistics — assessment
+
+Three equally weighted midterms, no final. No curve, but the lowest midterm is dropped.
+
+The dropped midterm makes the first one low-stakes; use it to learn the format.
+
+Question: Who won the 1994 World Cup?
+In corpus: False
+
+1. course_hist_118_exams.txt#0 | cosine distance 0.885860
+Produced by: chunker.py::split_documents
+HIST 118 Modern World History — assessment
+
+No exams; two essays and a final project. Not curved.
+
+The essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+2. course_hist_118.txt#0 | cosine distance 0.937370
+Produced by: chunker.py::split_documents
+HIST 118 Modern World History
+
+Transferred in last year, so take this with a grain of salt. Format is discussion-led seminar, attendance is 15% of the grade. Assessment: no exams; two essays and a final project. Not curved.
+
+Expect a lot of reading, about 120 pages a week, but no problem sets.
+
+The one piece of advice: the essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+3. admin_study_abroad.txt#0 | cosine distance 0.947474
+Produced by: chunker.py::split_documents
+On the study abroad
+
+Applications open in October for the following academic year. The financial aid package travels with you, which is the single most misunderstood fact about the programme — most students assume it doesn't and rule themselves out.
+
+4. housing_innisfree_hall.txt#0 | cosine distance 0.952119
+Produced by: chunker.py::split_documents
+Innisfree Hall — what it's actually like
+
+Transferred in last year, so take this with a grain of salt. Built 1991, renovated 2022. Rooms are doubles arranged as pairs sharing one bathroom between two rooms.
+
+The good: the shared-bathroom-between-two-rooms arrangement is the best compromise on campus.
+
+The bad: no air conditioning, which matters for the first three weeks of September.
+
+Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building is L-shaped and the short wing is much quieter.
+
+5. course_engl_205_exams.txt#0 | cosine distance 0.955027
+Produced by: chunker.py::split_documents
+ENGL 205 Writing for the Sciences — assessment
+
+No exams; a portfolio of six revised pieces. Not curved.
+
+The portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.
+
+Question: What is the recommended dosage of ibuprofen for a headache?
+In corpus: False
+
+1. money_textbooks.txt#0 | cosine distance 0.844232
+Produced by: chunker.py::split_documents
+Textbooks without paying full price
+
+The library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.
+
+The campus store price-matches, which is not advertised anywhere and you have to ask at the counter with the other listing on your phone.
+
+2. course_hist_118.txt#0 | cosine distance 0.860232
+Produced by: chunker.py::split_documents
+HIST 118 Modern World History
+
+Transferred in last year, so take this with a grain of salt. Format is discussion-led seminar, attendance is 15% of the grade. Assessment: no exams; two essays and a final project. Not curved.
+
+Expect a lot of reading, about 120 pages a week, but no problem sets.
+
+The one piece of advice: the essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+3. course_econ_101.txt#0 | cosine distance 0.864023
+Produced by: chunker.py::split_documents
+ECON 101 Introduction to Economics
+
+Took this last spring. Format is large lecture, 300 people, with small discussion sections. Assessment: two midterms and a final, all multiple choice. Curved, and generously.
+
+Expect 4 hours a week outside class.
+
+The one piece of advice: the discussion section is where the exam-style questions get worked; attendance isn't taken but it correlates.
+
+4. course_cs_340_exams.txt#0 | cosine distance 0.865958
+Produced by: chunker.py::split_documents
+CS 340 Databases — assessment
+
+One midterm and a final, both open-book. Lightly curved, usually two or three points.
+
+Start the term project in week three, not week eight; everyone learns this the hard way.
+
+5. course_engl_205.txt#0 | cosine distance 0.870331
+Produced by: chunker.py::split_documents
+ENGL 205 Writing for the Sciences
+
+Transferred in last year, so take this with a grain of salt. Format is workshop format, you write every week and peers read it. Assessment: no exams; a portfolio of six revised pieces. Not curved.
+
+Expect 4 to 5 hours a week, mostly writing and rewriting.
+
+The one piece of advice: the portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.
+
+Question: How do I write a for loop in Rust?
+In corpus: False
+
+1. course_hist_118_exams.txt#0 | cosine distance 0.895998
+Produced by: chunker.py::split_documents
+HIST 118 Modern World History — assessment
+
+No exams; two essays and a final project. Not curved.
+
+The essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+2. course_engl_205.txt#0 | cosine distance 0.900157
+Produced by: chunker.py::split_documents
+ENGL 205 Writing for the Sciences
+
+Transferred in last year, so take this with a grain of salt. Format is workshop format, you write every week and peers read it. Assessment: no exams; a portfolio of six revised pieces. Not curved.
+
+Expect 4 to 5 hours a week, mostly writing and rewriting.
+
+The one piece of advice: the portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.
+
+3. course_engl_205_exams.txt#0 | cosine distance 0.905611
+Produced by: chunker.py::split_documents
+ENGL 205 Writing for the Sciences — assessment
+
+No exams; a portfolio of six revised pieces. Not curved.
+
+The portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.
+
+4. course_hist_118.txt#0 | cosine distance 0.914244
+Produced by: chunker.py::split_documents
+HIST 118 Modern World History
+
+Transferred in last year, so take this with a grain of salt. Format is discussion-led seminar, attendance is 15% of the grade. Assessment: no exams; two essays and a final project. Not curved.
+
+Expect a lot of reading, about 120 pages a week, but no problem sets.
+
+The one piece of advice: the essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+5. housing_calder_annexe_laundry.txt#0 | cosine distance 0.917800
+Produced by: chunker.py::split_documents
+Laundry in Calder Annexe
+
+Machines take $2.00 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+In-corpus best distances: 0.339755–0.536254
+Out-of-scope best distances: 0.824593–0.934011
+Gap between groups: 0.288339
+Choose a cutoff after inspecting the retrieved text. These ten examples
+are calibration data, not an independent measure of generalization.

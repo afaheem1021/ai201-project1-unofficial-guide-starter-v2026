@@ -41,3 +41,20 @@ The `expects` phrases are screening clues, not sufficient proof of a correct
 answer. For example, `week` does not establish the eleven-institution detail.
 Weekend shuttle operating hours are absent from the source and must not be
 inferred from weekday operating hours.
+
+## Final check against the course checklist
+
+The [official criteria self-check](https://courses.codepath.org/courses/ai201/pages/criteria_self_check)
+was consulted during the final write-up. The original targets remain unchanged.
+Each target identifies a count or visible behavior, a fixed sample, a checking
+procedure, and a corpus-specific reason. Together they cover retrieval, source
+naming, refusal, chunk context, and factual answer quality; criterion 3 covers
+failure behavior. Criterion 4 counts usable source-context chunks; criterion 5
+counts fully supported answers, with completeness and claim support defining a
+passing answer rather than scoring separate pipeline stages together.
+
+Two readers may still differ on whether a paraphrase is supported. The fixed
+source-derived checklist above and claim-by-claim reading reduce that ambiguity;
+`expects` alone must not be treated as an automatic correctness scorer. A missing
+answer part or a wrong qualifier is a failure even when the expected phrase and
+a source filename both appear.

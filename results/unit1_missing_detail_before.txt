@@ -1,0 +1,9 @@
+$ python app.py ask 'What hours does the campus shuttle operate on weekends?'
+
+  (best distance 0.396, cutoff 0.68)
+
+The campus shuttle operates from 7:00 am to 11:00 pm on weekends (transit_shuttle.txt).
+
+Sources retrieved: dining_the_ridgeway_cafe.txt, dining_verrill_street_grill.txt, money_jobs.txt, transit_shuttle.txt, transit_walking.txt
+
+1 model calls this session, 779 tokens (750 in, 29 out)

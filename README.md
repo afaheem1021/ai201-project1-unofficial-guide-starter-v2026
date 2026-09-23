@@ -2,10 +2,10 @@
 
 Ahmed Faheem — `campus_life`
 
-**Status:** setup and the starter demonstration are verified. Five acceptance
-criteria and their explanations are recorded in [criteria.md](criteria.md)
-before calibration. The custom chunker and
-calibration are the next implementation steps.
+**Status:** the unit 1 build and calibration are complete. Five acceptance
+criteria are recorded in [criteria.md](criteria.md), with the targets committed
+before calibration. The unit 2 evaluation sections below remain reserved for
+the next assignment.
 
 Repository to use for both units:
 https://github.com/afaheem1021/ai201-project1-unofficial-guide-starter-v2026
@@ -148,30 +148,114 @@ that every sentence in it is accurate.
 
 ## Sample Answer
 
-<!-- One complete question and answer, pasted as text, with the source line
-     visible. Milestone 4. -->
+**Question:** Can I use meal swipes at The Ridgeway Café, and how do I pay there?
 
-**Question:**
+**Answer:** the complete output below came from a real Gemini request through
+`app.py::ask_pipeline` and `generate.py::answer_from_chunks` after re-indexing
+with the custom chunker. The model citation is inside the answer; the separate
+retrieved-source list only describes search results.
 
-**Answer:**
+```text
+You cannot use meal swipes at The Ridgeway Café; it costs declining balance only, and no meal swipes are accepted (dining_the_ridgeway_cafe.txt).
 
+Sources retrieved: dining_kestrel_commons.txt, dining_north_kitchen.txt, dining_the_ridgeway_cafe.txt, dining_the_ridgeway_cafe_followup.txt, dining_verrill_street_grill.txt
+
+1 model calls this session, 987 tokens (950 in, 37 out)
 ```
-```
 
-**My relevance cutoff:**
+The [complete prompt and answer](results/unit1_sample_answer.txt) were captured
+with `python app.py ask "Can I use meal swipes at The Ridgeway Café, and how do I pay there?" --show-prompt`.
 
-<!-- The number you set in config.py, and how you got there.
-
-     You ran five questions your corpus covers and the five in OUT_OF_SCOPE
-     that it clearly doesn't, and wrote down the best distance for each. What
-     did those two groups look like? Where was the gap? Put the actual numbers
-     here — the table below wants all ten rows.
-
-     Milestone 4. -->
+**Relevance cutoff:** `THRESHOLD = 0.68`; **top-k:** `5`.
+The gate passes only when the best cosine distance is strictly below 0.68.
+It returns `I don't have enough information about that.` without calling Gemini
+when the threshold is not met or retrieval is empty.
 
 | Question | In corpus? | Best distance |
-|---|---|---|
-|  |  |  |
+|---|---|---:|
+| Can I use meal swipes at The Ridgeway Café, and how do I pay there? | Yes | 0.536254 |
+| Why should I complete the CS 210 labs even though they are only 10% of the grade? | Yes | 0.418646 |
+| Does Innisfree Hall have air conditioning, and which wing is quieter? | Yes | 0.418144 |
+| How many other institutions does the interlibrary system cover, and how long do requests take? | Yes | 0.339755 |
+| How often does the campus shuttle run on weekdays versus weekends, and which stop can be skipped? | Yes | 0.382798 |
+| What is the capital of Mongolia? | No | 0.824593 |
+| How do I change the oil in a diesel engine? | No | 0.934011 |
+| Who won the 1994 World Cup? | No | 0.885860 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.844232 |
+| How do I write a for loop in Rust? | No | 0.895998 |
+
+The covered questions range from **0.339755 to 0.536254**; the unrelated
+questions range from **0.824593 to 0.934011**. The midpoint of the gap is
+approximately 0.680424, rounded to **0.68** to leave roughly equal room on either
+side. The original 0.60 also separates these ten questions, so this is a
+justified calibration choice, not a demonstrated accuracy improvement or an
+optimal threshold. Lowering it below the Café's 0.536254 best match would
+refuse an answerable question; raising it above 0.824593 would let the Mongolia
+question through. Unseen paraphrases and related-but-unanswered questions may
+still be misclassified.
+
+The first three retrievals were inspected in full, not just by their scores:
+
+- Café: North Kitchen ranked first (0.536254), but the correct Café post ranked
+  second (0.542672). The nearest venue accepts swipes; the requested venue does
+  not, so filenames and precise entity matching matter.
+- CS 210: the assessment post ranked first (0.418646) and explicitly says exams
+  reuse lab problems; the full course post ranked second.
+- Innisfree: the noise post ranked first (0.418144), but the main post ranked
+  second (0.477856) and contains both the AC and quiet-wing details.
+
+Top-k 5 is retained because the best result alone is insufficient for two of
+these questions, and all five calibration questions have a complete answer
+source within the returned set. This does not establish that five is optimal:
+extra excerpts can distract the model, and a gate pass means similarity rather
+than proof that every part of a question is answered. The grounding instruction
+therefore requires claim-specific filenames, faithful numbers and qualifications,
+and an explicit acknowledgment of missing details.
+
+All five `OUT_OF_SCOPE` questions were also run through the complete pipeline:
+**5/5 were refused before generation, with 0 model calls**. See the
+[gate-check evidence](results/unit1_gate_checks.json). The
+[full retrieval transcript](results/unit1_retrieval.txt) includes every returned
+chunk and distance, and the [calibration JSON](results/unit1_calibration.json)
+preserves unrounded values. Its `threshold_at_measurement` is 0.60 because the
+distances were recorded before selecting the final 0.68 cutoff.
+
+An extra grounding check asked: **“What hours does the campus shuttle operate
+on weekends?”** Its best distance was 0.396, so it passed the gate. The initial
+answer incorrectly assigned the weekday 7am–11pm hours to weekends. The grounding
+instruction was tightened to match each claim to its exact conditions and to
+state when a related source omits the requested detail. The next real response
+was:
+
+```text
+The provided documents do not specify the exact operating hours for the campus shuttle on weekends, other than stating it runs every 40 minutes on weekends (transit_shuttle.txt).
+```
+
+The [failed attempt](results/unit1_missing_detail_before.txt) and
+[recheck with the revised prompt](results/unit1_missing_detail_after.txt) are
+both preserved. This one successful recheck does not prove the problem is
+eliminated: a citation alone does not verify a claim, and related-but-unanswered
+questions still depend on the model obeying the grounding instruction.
+
+These ten questions are calibration data, not an independent evaluation of
+future accuracy. The three-run acceptance evaluation belongs to unit 2 and has
+not been run. The source-based test procedures are in the
+[criteria self-check](results/unit1_criteria_review.md).
+
+To reproduce the local checks:
+
+```bash
+python app.py index
+python tools/calibrate.py          # real retrieval; no Gemini calls
+python -m unittest discover -s tests -v
+```
+
+All **14 regression tests** pass. They cover exact preservation of the 88
+short posts, long-post boundaries and provenance, overlong sentences, empty
+inputs, rejection before generation, and blank model responses or cached values.
+The original setup check also passed all 10 checks, including a real Gemini call.
+The special-activity starter count is **26**; see
+[the original setup record](results/unit1_setup.md).
 
 ## How I Used AI
 
@@ -180,7 +264,7 @@ Gemini key out of Git, and commit using my account. It found an empty virtual
 environment and a setup check that read the model setting before loading
 `.env`. The resulting changes installed the missing packages, stored the key
 in an ignored local file, fixed the model-setting check, and verified a real
-Gemini response under my Git identity.
+Gemini response. Commits used my configured Git identity.
 
 **2. Criteria and corpus review.** I asked Codex to complete the custom criteria
 and review the five questions and the supplied criteria's explanations. It
