@@ -2,10 +2,10 @@
 
 Ahmed Faheem — `campus_life`
 
-**Status:** setup and the starter demonstration are verified. Milestone 2 is
-in progress: Ahmed's two custom criteria and their explanations are pending.
-The custom chunker, five-question calibration, and final write-up will follow
-after those targets are committed. This is not yet a complete submission.
+**Status:** setup and the starter demonstration are verified. Five acceptance
+criteria and their explanations are recorded in [criteria.md](criteria.md)
+before calibration. The custom chunker and
+calibration are the next implementation steps.
 
 Repository to use for both units:
 https://github.com/afaheem1021/ai201-project1-unofficial-guide-starter-v2026
@@ -64,7 +64,8 @@ and excess blank lines while retaining paragraph boundaries. These provided
 course documents contain plain text, with no navigation, ads, or HTML in the
 reviewed sources. This is not a general-purpose web-page cleaner.
 
-Implementation and sample chunks are pending completion of Milestone 2.
+The strategy above was recorded before implementation; samples will be copied
+from the custom chunker after it is implemented.
 
 ## Sample Chunks
 
@@ -131,21 +132,20 @@ Implementation and sample chunks are pending completion of Milestone 2.
 
 ## How I Used AI
 
-**1. Setup and secret handling.** I asked Codex to verify my setup, keep the
-Gemini key out of Git, and commit using my account. It found that the virtual
-environment existed but contained none of the required packages. Codex installed
-them, created an ignored local `.env`, verified a real Gemini response, and
-checked that Git author and committer identities were mine. It also fixed the
-setup check's handling of a model override in `.env` and blank responses. These
-were AI-made changes; I have not claimed to have made them manually.
+**1. Setup and secret handling.** I asked Codex to verify setup, keep the
+Gemini key out of Git, and commit using my account. It found an empty virtual
+environment and a setup check that read the model setting before loading
+`.env`. The resulting changes installed the missing packages, stored the key
+in an ignored local file, fixed the model-setting check, and verified a real
+Gemini response under my Git identity.
 
-**2. Corpus and evaluation preparation.** As part of my request to follow the
-assignment, Codex inspected the campus documents and proposed keeping short
-posts together with a 600-character budget and no body overlap. It selected
-five questions and checked their expected phrases against source files without
-running retrieval on them. The plan and question selection are AI-assisted;
-I still need to write criteria 4 and 5 and review the supplied criteria's
-explanations before implementation and calibration continue.
+**2. Criteria and corpus review.** I asked Codex to complete the custom criteria
+and review the five questions and the supplied criteria's explanations. It
+checked each question against the source files and defined tests for preserving
+chunk context and producing complete, source-supported answers. The review
+clarified that a retrieved-source footer is not a model citation, that a refusal
+fails an in-corpus question, and that each target must hold independently in each
+of the next unit's three runs. These definitions were recorded before calibration.
 
 No stretch features are planned for this unit.
 
